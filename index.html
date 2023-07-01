@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <!-- BEGIN LivePerson Monitor. -->
     <script
         type="text/javascript">window.lpTag = window.lpTag || {}, 'undefined' == typeof window.lpTag._tagCount ? (window.lpTag = { wl: lpTag.wl || null, scp: lpTag.scp || null, site: '26206640' || '', section: lpTag.section || '', tagletSection: lpTag.tagletSection || null, autoStart: lpTag.autoStart !== !1, ovr: lpTag.ovr || {}, _v: '1.10.0', _tagCount: 1, protocol: 'https:', events: { bind: function (t, e, i) { lpTag.defer(function () { lpTag.events.bind(t, e, i) }, 0) }, trigger: function (t, e, i) { lpTag.defer(function () { lpTag.events.trigger(t, e, i) }, 1) } }, defer: function (t, e) { 0 === e ? (this._defB = this._defB || [], this._defB.push(t)) : 1 === e ? (this._defT = this._defT || [], this._defT.push(t)) : (this._defL = this._defL || [], this._defL.push(t)) }, load: function (t, e, i) { var n = this; setTimeout(function () { n._load(t, e, i) }, 0) }, _load: function (t, e, i) { var n = t; t || (n = this.protocol + '//' + (this.ovr && this.ovr.domain ? this.ovr.domain : 'lptag.liveperson.net') + '/tag/tag.js?site=' + this.site); var o = document.createElement('script'); o.setAttribute('charset', e ? e : 'UTF-8'), i && o.setAttribute('id', i), o.setAttribute('src', n), document.getElementsByTagName('head').item(0).appendChild(o) }, init: function () { this._timing = this._timing || {}, this._timing.start = (new Date).getTime(); var t = this; window.attachEvent ? window.attachEvent('onload', function () { t._domReady('domReady') }) : (window.addEventListener('DOMContentLoaded', function () { t._domReady('contReady') }, !1), window.addEventListener('load', function () { t._domReady('domReady') }, !1)), 'undefined' === typeof window._lptStop && this.load() }, start: function () { this.autoStart = !0 }, _domReady: function (t) { this.isDom || (this.isDom = !0, this.events.trigger('LPT', 'DOM_READY', { t: t })), this._timing[t] = (new Date).getTime() }, vars: lpTag.vars || [], dbs: lpTag.dbs || [], ctn: lpTag.ctn || [], sdes: lpTag.sdes || [], hooks: lpTag.hooks || [], identities: lpTag.identities || [], ev: lpTag.ev || [] }, lpTag.init()) : window.lpTag._tagCount += 1;</script>
@@ -10,26 +9,33 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Vector Store - Automated Chat Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>AutoMate</title>
     <style>
-        /* CSS Styling */
-        html {
-            height: 100%;
+        /* Reset Styles */
+        body,
+        h1,
+        h2,
+        p,
+        ul,
+        li,
+        button {
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: 'Roboto', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100%;
-            background-image: url('https://img.freepik.com/premium-photo/abstract-background_749522-1.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
+            font-family: Arial, sans-serif;
         }
 
+        /* Global Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
         header {
             background-image: url('https://i.pinimg.com/736x/e6/45/bf/e645bfd69687b1418128aaa2edb9fe70.jpg');
             background-size: cover;
@@ -42,7 +48,7 @@
         }
 
         .logo {
-            width: 50px;
+            width: 60px;
             height: 50px;
             margin-right: 10px;
         }
@@ -55,170 +61,6 @@
         .title {
             font-size: 24px;
             margin: 0;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 36px;
-            font-weight: bold;
-            line-height: 1.3;
-        }
-
-        .services-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 10px;
-        }
-
-        .services-list li {
-            padding-left: 25px;
-            margin-bottom: 10px;
-            line-height: 1.5;
-        }
-
-        .services-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 7px;
-            width: 10px;
-            height: 10px;
-            background-color: #333;
-            border-radius: 50%;
-        }
-
-        .services {
-            text-align: center;
-        }
-
-        .container {
-            flex: 1;
-            max-width: 960px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(to bottom, #ffffff, #f2f2f2);
-        }
-
-        p {
-            line-height: 1.5;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .button:hover {
-            background-color: #555;
-        }
-
-        .form-container {
-            margin-top: 40px;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .form-container h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-
-        .form-group input[type="text"],
-        .form-group input[type="url"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        .form-group .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .form-group .button:hover {
-            background-color: #555;
-        }
-
-        .form-container label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .form-container input[type="text"],
-        .form-container input[type="url"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-
-        .form-container .button {
-            margin-top: 10px;
-        }
-
-        .form-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .form-subtitle {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        footer {
-            background-image: url('https://i.pinimg.com/736x/67/72/d2/6772d266d96c9ecba52ddeb5cf479477--backgrounds-modern.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-            margin-top: auto;
         }
 
         nav {
@@ -237,6 +79,209 @@
         .nav-links a {
             text-decoration: none;
             color: #fff;
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            background-image: url('https://img.freepik.com/premium-photo/abstract-background_749522-1.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #333;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .hero-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, rgba(191, 57, 137, 1) 0%, rgba(9, 107, 222, 1) 100%);
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+
+        .cta-button:hover {
+            background-color: #555;
+        }
+
+        /* Services Section Styles */
+        .services {
+            background-color: #f2f2f2;
+            padding: 60px 0;
+            text-align: center;
+            background-image: url("https://backgroundabstract.com/wp-content/uploads/edd/2022/02/5594016-e1656071131636.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .service-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .service-list li {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Business Details Section Styles */
+        .business-details {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .details-form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            max-width: 300px;
+            margin: auto;
+        }
+
+        .details-form label {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .details-form input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .details-form button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, rgba(191, 57, 137, 1) 0%, rgba(9, 107, 222, 1) 100%);
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .details-form button:hover {
+            background-color: #555;
+        }
+
+        /* Testimonials Section Styles */
+        .testimonials {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .testimonial {
+            margin-bottom: 40px;
+        }
+
+        .testimonial-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-author {
+            font-size: 14px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-image: url('https://i.pinimg.com/736x/67/72/d2/6772d266d96c9ecba52ddeb5cf479477--backgrounds-modern.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Additional Styles */
+
+        /* Add subtle shadows or depth */
+        .hero,
+        .services,
+        .business-details,
+        .testimonials {
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Include social proof */
+        .testimonial-img {
+            display: block;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
+
+        /* Transparency for the white box in the middle of the page */
+        .business-details {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Typography Improvements */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 42px;
+        }
+
+        h2 {
+            font-size: 36px;
+        }
+
+        h3 {
+            font-size: 30px;
+        }
+
+        h4 {
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 5px;
         }
 
         /* Responsive Styles */
@@ -261,6 +306,22 @@
             .cta-button {
                 font-size: 14px;
             }
+
+            .form-title {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .form-subtitle {
+                font-size: 16px;
+                color: #666;
+                margin-bottom: 20px;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
         }
     </style>
 </head>
@@ -270,7 +331,7 @@
         <div class="logo">
             <img src="./JL_-_Logo_2_upscaled-removebg-preview.png" alt="Logo">
         </div>
-        <h1 class="title">Vector Store</h1>
+        <h1 class="title">AutoMate</h1>
         <nav>
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
@@ -281,64 +342,99 @@
         </nav>
     </header>
 
+    <section class="hero">
+        <h2 class="hero-title">Transforming Customer Service with Automated Chat Solutions</h2>
+        <p class="hero-description">Deliver exceptional customer experiences and increase efficiency with our advanced
+            chatbot technology.</p>
+        <a href="#business-details" class="cta-button">Try It Now</a>
+    </section>
 
-    <div class="container">
-        <h2>Welcome to The Vector Store!</h2>
-        <p>At The Vector Store, we specialize in providing automated chat services to enhance your customer support and
-            improve user experience. Our advanced chatbot solutions are designed to handle customer inquiries, provide
-            instant responses, and assist with various tasks.</p>
+    <section class="services">
+        <h2 class="section-title">Our Services</h2>
+        <ul class="service-list">
+            <li>24/7 Automated Chat Support</li>
+            <li>Personalized Customer Interactions</li>
+            <li>Intelligent Conversation Flows</li>
+            <li>Seamless Integration with Existing Systems</li>
+            <li>Real-Time Analytics and Insights</li>
+            <li>Customizable Chatbot Design</li>
+        </ul>
+    </section>
 
-        <div class="services">
-            <h2 class="section-title">Our Services</h2>
-            <ul class="services-list">
-                <li>24/7 Automated Chat Support</li>
-                <li>Personalized Customer Interactions</li>
-                <li>Intelligent Conversation Flows</li>
-                <li>Seamless Integration with Existing Systems</li>
-                <li>Real-Time Analytics and Insights</li>
-                <li>Customizable Chatbot Design</li>
-            </ul>
+    <section id="business-details" class="business-details">
+        <h3 style="margin-bottom: 10px;" class="form-title">Ready to Boost Your Business?</h3>
+        <p style="font-size: 16px; color: #666; margin-bottom: 20px;" class="form-subtitle">Submit your business details
+            below to get started!</p>
+        <form id="details-form" class="details-form" action="./Vector Store 2.html">
+
+            <label for="business-name">Business Name</label>
+            <input type="text" id="business-name" name="business-name">
+
+            <label for="business-url">Business URL</label>
+            <input type="text" id="business-url" name="business-url">
+
+            <button type="submit">Get Started</button>
+
+        </form>
+    </section>
+
+    <section class="testimonials">
+        <h2 class="section-title">Testimonials</h2>
+        <div class="testimonial">
+            <!-- <img class="testimonial-img" src="path/to/testimonial1.jpg" alt="Testimonial 1"> -->
+            <p class="testimonial-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam lacus
+                elit."</p>
+            <p class="testimonial-author">- John Doe</p>
         </div>
-
-        <p>Whether you need to streamline your customer support process, capture leads, or automate repetitive tasks,
-            our chatbot solutions can help you achieve your goals.</p>
-
-        <div class="form-container">
-            <h3 class="form-title">Ready to Boost Your Business?</h3>
-            <p class="form-subtitle">Submit your business details below to get started!</p>
-            <form id="businessForm">
-                <div class="form-group">
-                    <label for="businessName" class="form-label">Business Name</label>
-                    <input type="text" id="businessName" class="form-input" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="businessURL" class="form-label">Website URL</label>
-                    <input type="url" id="businessURL" class="form-input" required>
-                </div>
-
-                <div class="form-group">
-                    <button type="submit" class="button">Get Started</button>
-                </div>
-            </form>
+        <div class="testimonial">
+            <!-- <img class="testimonial-img" src="path/to/testimonial2.jpg" alt="Testimonial 2"> -->
+            <p class="testimonial-text">"Vestibulum dapibus dolor at lorem hendrerit, id facilisis mi euismod."</p>
+            <p class="testimonial-author">- Jane Smith</p>
         </div>
-    </div>
+    </section>
 
     <footer>
-        &copy; 2023 The Vector Store. All rights reserved.
+        <p>&copy; 2023 The Vector Store. All rights reserved.</p>
     </footer>
 
     <script>
         // JavaScript Function
-        document.getElementById('businessForm').addEventListener('submit', function (event) {
+        lpTag.events.bind('LP_OFFERS', 'OFFER_IMPRESSION', popWindow); // Add Event Listener / lpTag event binding on OFFER Impression
+
+        let previousEngagementId;
+        // Pop messaging window via engagement trigger api with engagementId
+        function popWindow(data, eventInfo) {
+            console.log('Engagement Popped');
+            console.log('previousEngagementId: ' + previousEngagementId);
+            console.log('data.engagementId: ' + data.engagementId);
+            if (previousEngagementId !== data.engagementId) {
+                previousEngagementId = data.engagementId;
+
+                setTimeout(function () {
+                    //your code to be executed after 1 second
+                    console.log('Popping Window...');
+                    lpTag.taglets.rendererStub.click(data.engagementId);
+                }, 1000);
+
+
+            }
+        }
+
+        document.getElementById('details-form').addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent form submission
 
+            previousEngagementId = null; // Reset engagementIds
+
             // Get input values
-            var businessName = document.getElementById('businessName').value;
-            var businessURL = document.getElementById('businessURL').value;
+            var businessName = document.getElementById('business-name').value;
+            var businessURL = document.getElementById('business-url').value;
 
             // Perform actions with the input values
             alert('Thank you, ' + businessName + '! We will analyze your business at ' + businessURL + ' and provide you with personalized chatbot recommendations.');
+
+            // Set vectorstore-businessName to section lpTag.sections with lpTag.newPage()
+            console.log('lpTag newpage - businessName: ' + businessName)
+            lpTag.newPage(window.location.href, { section: [`vectorstore-${businessName.toLowerCase().replace(/\s/g, '')}`] });
 
             // You can add further logic or send the form data to a server for processing here
         });
