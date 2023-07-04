@@ -12,10 +12,16 @@
       var businessName = queryParams.get('businessName');
 
       // Replace "--" with "%20" in the parameter value
-      businessName = businessName.replace('--', ' ');
+      businessName = businessName.replaceAll('--', ' ');
+
+      if(businessName === null || businessName === 'null') {
+        businessName = '';
+      } else {
+        businessName = ' ' + businessName;
+      }
 
       // Build the second URL with the query parameter
-      var secondURL = `https://wa.me/447475242380?text=Hi%20${encodeURIComponent(businessName)}%21%20I%20just%20reached%20out%20on%20your%20website%20and%20switched%20to%20WhatsApp`;
+      var secondURL = `https://wa.me/447475242380?text=Hi${encodeURIComponent(businessName)}%21%20I%20just%20reached%20out%20on%20your%20website%20and%20switched%20to%20WhatsApp`;
 
       // Redirect to the second URL
       window.location.replace(secondURL);
