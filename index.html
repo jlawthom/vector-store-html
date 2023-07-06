@@ -322,6 +322,18 @@
             html {
                 scroll-behavior: smooth;
             }
+
+            .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: left;
+                max-width: 300px;
+                margin: auto;
+            }
+
+            .preview-button {
+                margin-left: 10px;
+            }
         }
     </style>
 </head>
@@ -366,17 +378,22 @@
         <p style="font-size: 16px; color: #666; margin-bottom: 20px;" class="form-subtitle">Submit your business details
             below to get started!</p>
         <form id="details-form" class="details-form" action="./Vector Store 2.html">
-
             <label for="business-name">Business Name</label>
             <input type="text" id="business-name" name="business-name">
 
             <label for="business-url">Business URL</label>
             <input type="text" id="business-url" name="business-url">
 
-            <button type="submit">Get Started</button>
-
+            <div style="" class="button-container">
+                <button type="submit">Get Started</button>
+                <button style="display: none;" type="button" id="preview-button"
+                    onclick="goToPreview()">Preview</button>
+            </div>
         </form>
     </section>
+
+
+
 
     <section class="testimonials">
         <h2 class="section-title">Testimonials</h2>
@@ -398,45 +415,64 @@
     </footer>
 
     <script>
+        let businessName;
+        let businessURL;
         // JavaScript Function
         lpTag.events.bind('LP_OFFERS', 'OFFER_IMPRESSION', popWindow); // Add Event Listener / lpTag event binding on OFFER Impression
 
-        let previousEngagementId;
+        let shouldPopWindow = false;
         // Pop messaging window via engagement trigger api with engagementId
         function popWindow(data, eventInfo) {
             console.log('Engagement Popped');
-            console.log('previousEngagementId: ' + previousEngagementId);
-            console.log('data.engagementId: ' + data.engagementId);
-            if (previousEngagementId !== data.engagementId) {
-                previousEngagementId = data.engagementId;
+            if (shouldPopWindow) {
+                shouldPopWindow = false;
 
+                console.log('Popping Window...');
                 setTimeout(function () {
                     //your code to be executed after 1 second
-                    console.log('Popping Window...');
                     lpTag.taglets.rendererStub.click(data.engagementId);
                 }, 1000);
-
-
             }
+        }
+
+        function goToPreview() {
+            window.open(`http://ec2-13-40-222-48.eu-west-2.compute.amazonaws.com:3000/preview?businessName=${businessName}&businessURL=${businessURL}`, '_blank').focus();
         }
 
         document.getElementById('details-form').addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent form submission
 
-            previousEngagementId = null; // Reset engagementIds
+            shouldPopWindow = true; // Reset window pop
 
             // Get input values
-            var businessName = document.getElementById('business-name').value;
-            var businessURL = document.getElementById('business-url').value;
+            businessName = document.getElementById('business-name').value;
+            businessURL = document.getElementById('business-url').value;
 
             // Perform actions with the input values
             alert('Thank you, ' + businessName + '! We will analyze your business at ' + businessURL + ' and provide you with personalized chatbot recommendations.');
 
-            // Set vectorstore-businessName to section lpTag.sections with lpTag.newPage()
-            console.log('lpTag newpage - businessName: ' + businessName)
-            lpTag.newPage(window.location.href, { section: [`vectorstore-${businessName.toLowerCase().replace(/\s/g, '')}`] });
+            // Set vectorstore-businessName to section lpTag.sections and cstatus sde with lpTag.newPage()
+            console.log('lpTag newpage - businessName: ' + businessName);
+            lpTag.newPage(window.location.href, {
+                section: [`vectorstore`], sdes: [
+                    {
+                        "type": "ctmrinfo", //MANDATORY
+                        "info": {
+                            "cstatus": `${businessName.toLowerCase().replace(/\s/g, '')}`, //CUSTOMER LIFECYCLE STATUS. FROM PRE-DEFINED LIST
+                            "ctype": `${businessName.replace(/\s/g, '--')}`
+                        }
+                    }
+                ]
+            });
 
             // You can add further logic or send the form data to a server for processing here
+            console.log('Popping Preview Button...');
+            setTimeout(function () {
+                //your code to be executed after 1 second
+                document.getElementById('preview-button').style = "display: inline;"
+            }, 1000);
+
+
         });
     </script>
 </body>
