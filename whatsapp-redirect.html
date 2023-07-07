@@ -12,6 +12,8 @@
       var businessName = queryParams.get('businessName');
       var refNumber = queryParams.get('userId');
 
+      console.log('refNumber: ' + refNumber);
+
       // Replace "--" with "%20" in the parameter value
       businessName = businessName.replaceAll('--', ' ');
 
@@ -22,10 +24,12 @@
       }
 
       // Build the second URL with the query parameter
-      var secondURL = `https://wa.me/447475242380?text=Hi${encodeURIComponent(businessName)}%21%20I%20just%20reached%20out%20on%20your%20website%20and%20switched%20to%20WhatsApp%0A%0ARef%3A%20${encodeURIComponent(refNumber)}`;
+      var secondURL = `https://wa.me/447475242380?text=Hi${encodeURIComponent(businessName)}%21%20I%20just%20reached%20out%20on%20your%20website%20and%20switched%20to%20WhatsApp%0A%0ARef%3A%20${refNumber}`;
+      console.log('secondURL: ' + secondURL);
 
+      
       // Redirect to the second URL
-      window.location.replace(secondURL);
+      // window.location.replace(secondURL);
     };
   </script>
 </head>
