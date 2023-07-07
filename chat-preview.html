@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Chat Window</title>
+    <style>
+        /* Basic styling for the chat window and conversation list */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #container {
+            display: flex;
+            height: 100vh;
+        }
+
+        #conversation-list {
+            flex: 0 0 auto;
+            background-image: url(https://img.freepik.com/premium-photo/abstract-background_749522-1.jpg);
+            padding: 20px;
+            border-right: 1px solid #ccc;
+            transition: width 0.3s ease;
+            position: relative;
+            width: 10px;
+            /* Set initial width to 10 */
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #chat-window {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            /* background-image: url(https://img.freepik.com/premium-photo/abstract-background_749522-1.jpg);
+            background-repeat: no-repeat;
+            background-size: cover; */
+        }
+
+        /* Styling for individual conversation items */
+        .conversation-item {
+            cursor: pointer;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            transition: visibility 0s ease, opacity 0.3s ease;
+            visibility: hidden;
+            /* Hide conversation items initially */
+            opacity: 0;
+            /* Set initial opacity to 0 */
+        }
+
+        .conversation-item.collapsed {
+            visibility: hidden !important;
+            /* Hide collapsed conversation items */
+            opacity: 0;
+            /* Set opacity to 0 for collapsed conversation items */
+        }
+
+        .conversation-item:not(.collapsed) {
+            visibility: visible !important;
+            /* Show conversation items when not collapsed */
+            opacity: 1;
+            /* Set opacity to 1 for visible conversation items */
+        }
+
+        .conversation-item:hover {
+            background-color: rgb(85, 85, 85, 0.6);
+            ;
+        }
+
+        .active {
+            background-color: rgb(85, 85, 85, 0.2);
+        }
+
+        #collapse-button {
+            width: 10px;
+            transform: rotate(90deg);
+            transition: transform 0.6s ease;
+            /* Apply transition to rotation */
+        }
+
+        #collapse-button.collapsed {
+            width: 10px;
+            transform: rotate(0deg);
+            /* Rotate the button when collapsed */
+        }
+
+        #collapse-button-container.collapsed {
+            text-align: right;
+            cursor: pointer;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-top: 10px;
+        }
+
+        #collapse-button-container {
+            text-align: right;
+            cursor: pointer;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-top: 10px;
+        }
+
+        #input-container {
+            margin-top: auto;
+        }
+
+        #chat-input {
+            width: 89%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        #chat-input:focus {
+            outline: none;
+            border-color: #666;
+        }
+
+        #send-button.active {
+            color: #000;
+        }
+
+        #send-button {
+            width: 9.5%;
+            height: 95%;
+            color: #999;
+            border-color: transparent;
+            background-color: transparent;
+        }
+
+        #header-section {
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding-top: 20px;
+        }
+
+        #header-section h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+            /* margin-bottom: 5px; */
+        }
+
+        #header-section p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+            margin-top: 10px;
+        }
+
+        .conversation-item i {
+            /* margin-right: 8px; */
+        }
+
+        .item-text {
+            margin-right: 4px;
+            margin-left: 8px;
+        }
+    </style>
+    <script>
+        // JavaScript code to handle collapsible conversation list
+        document.addEventListener("DOMContentLoaded", function () {
+            var conversationList = document.getElementById("conversation-list");
+            var collapseButton = document.getElementById("collapse-button");
+            var collapseButtonContainer = document.getElementById("collapse-button-container");
+            var conversationItems = document.getElementsByClassName("conversation-item");
+            var isCollapsed = true; /* Set initial state to collapsed */
+
+            var chatInput = document.getElementById("chat-input");
+            var sendButton = document.getElementById("send-button");
+
+            collapseButton.addEventListener("click", function () {
+                isCollapsed = !isCollapsed;
+                conversationList.style.width = isCollapsed ? "10px" : "90%";
+                collapseButton.classList.toggle("collapsed"); // Toggle the collapsed class
+                collapseButtonContainer.classList.toggle("collapsed");
+
+                for (var i = 0; i < conversationItems.length; i++) {
+                    conversationItems[i].classList.toggle("collapsed", isCollapsed);
+                }
+
+                // Wait for transition to complete before showing conversation items
+                setTimeout(function () {
+                    for (var i = 0; i < conversationItems.length; i++) {
+                        conversationItems[i].style.visibility = isCollapsed ? "hidden" : "visible";
+                        conversationItems[i].style.opacity = isCollapsed ? 0 : 1;
+                    }
+                }, 300); // Same duration as transition in CSS (0.3s)
+            });
+
+            chatInput.addEventListener("input", function () {
+                if (chatInput.value.trim() === "") {
+                    sendButton.classList.remove("active");
+                } else {
+                    sendButton.classList.add("active");
+                }
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <div id="conversation-list" class="collapsed">
+            <div id="collapse-button-container" class="collapsed">
+                <div id="collapse-button" class="collapsed">&#9654;</div>
+            </div>
+            <div class="conversation-item active collapsed" style="visibility: hidden; opacity: 0;">
+                <i class="fas fa-user"></i> <span class="item-text">John Smith</span>
+                <i class="fas fa-globe"></i>
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="conversation-item collapsed" style="visibility: hidden; opacity: 0;">
+                <i class="fas fa-user"></i> <span class="item-text">Jane Doe</span>
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="conversation-item collapsed" style="visibility: hidden; opacity: 0;">
+                <i class="fas fa-user"></i> <span class="item-text">Web Visitor 834652</span>
+                <i class="fas fa-globe"></i>
+            </div>
+        </div>
+
+
+        <div id="chat-window">
+            <div id="header-section">
+                <h1
+                    style="background: -webkit-linear-gradient(135deg, rgba(191, 57, 137, 1) 0%, rgba(9, 107, 222, 1) 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+                    John Smith</h1>
+                <p>WhatsApp | +1 123 456 7890</p>
+                <p>Summary: The customer is looking for guitar lessons in the Radyr area and has never played guitar before.</p>
+            </div>
+            <div id="chat-messages"></div>
+            <div id="input-container">
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button id="send-button"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
