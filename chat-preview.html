@@ -72,7 +72,8 @@
             font-size: 20px;
             width: 20px;
             height: 20px;
-            margin: auto;
+            margin-right: auto;
+            margin-left: 10px;
             margin-top: 5px;
         }
 
@@ -111,7 +112,8 @@
             align-items: center;
             border-top: 1px solid #ccc;
             background-color: #fff;
-            z-index: 998; /* Ensure the input area stays on top */
+            z-index: 998;
+            /* Ensure the input area stays on top */
         }
 
         .input-field {
@@ -136,25 +138,29 @@
             cursor: pointer;
             padding: 20px;
             border-top: 1px solid #ccc;
-            transition: visibility 1s ease, opacity 1s ease;
-            visibility: hidden;
+            /* transition: visibility 0.1s ease, opacity 0.1s ease; */
+            visibility: visible;
             /* Hide conversation items initially */
-            opacity: 0;
+            opacity: 1;
             /* Set initial opacity to 0 */
         }
 
         .conversation-item.collapsed {
-            visibility: hidden !important;
+            /* visibility: hidden !important; */
             /* Hide collapsed conversation items */
             opacity: 0;
             /* Set opacity to 0 for collapsed conversation items */
+            transition: opacity 1s ease, transform 1s ease;
+            transform: translateY(-10px);
         }
 
         .conversation-item:not(.collapsed) {
-            visibility: visible !important;
+            /* visibility: visible !important; */
             /* Show conversation items when not collapsed */
             opacity: 1;
             /* Set opacity to 1 for visible conversation items */
+            transition: opacity 3s ease, transform 1s ease;
+            transform: translateY(0);
         }
 
         .conversation-item:hover {
@@ -182,25 +188,59 @@
         #send-button.active {
             color: #000;
         }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            transition: opacity 3s ease, transform 1s ease;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .expandable-section.expanded .search-bar {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .search-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-icon {
+            margin-left: 5px;
+            color: #999;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <div class="expandable-section" id="expandableContent">
-            <div class="expand-icon" onclick="toggleExpandableSection()"">&#x25BC;</div>
+            <div class="expand-icon" onclick="toggleExpandableSection()"><i class="fas fa-bars"></i></div>
             <div class=" expandable-content">
+
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search..." />
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+
                 <!-- Update the styles for .conversation-item -->
-                <div class="conversation-item active collapsed" style="visibility: hidden; opacity: 0;">
+                <div class="conversation-item active collapsed">
                     <i class="fas fa-user"></i> <span class="item-text">John Smith</span>
                     <i class="fas fa-globe"></i>
                     <i class="fab fa-whatsapp"></i>
                 </div>
-                <div class="conversation-item collapsed" style="visibility: hidden; opacity: 0;">
+                <div class="conversation-item collapsed">
                     <i class="fas fa-user"></i> <span class="item-text">Jane Doe</span>
                     <i class="fab fa-whatsapp"></i>
                 </div>
-                <div class="conversation-item collapsed" style="visibility: hidden; opacity: 0;">
+                <div class="conversation-item collapsed">
                     <i class="fas fa-user"></i> <span class="item-text">Web Visitor 834652</span>
                     <i class="fas fa-globe"></i>
                 </div>
@@ -249,52 +289,45 @@
         });
 
         function sendMessage() {
-                var messageInput = document.getElementById('messageInput');
-                var chatWindow = document.getElementById('chatWindow');
+            var messageInput = document.getElementById('messageInput');
+            var chatWindow = document.getElementById('chatWindow');
 
-                var message = messageInput.value;
-                if (message.trim() === '') {
-                    return;
-                }
-
-                var messageElement = document.createElement('div');
-                messageElement.classList.add('message');
-                messageElement.classList.add('sender');
-                messageElement.textContent = message;
-
-                chatWindow.appendChild(messageElement);
-                messageInput.value = '';
-
-                chatWindow.scrollTop = chatWindow.scrollHeight; // Scroll to the bottom of the chat window
+            var message = messageInput.value;
+            if (message.trim() === '') {
+                return;
             }
+
+            var messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.classList.add('sender');
+            messageElement.textContent = message;
+
+            chatWindow.appendChild(messageElement);
+            messageInput.value = '';
+
+            chatWindow.scrollTop = chatWindow.scrollHeight; // Scroll to the bottom of the chat window
+        }
 
         function toggleExpandableSection() {
-                var expandableContent = document.getElementById('expandableContent');
-                var expandableSection = document.querySelector('.expandable-section');
-                var conversationItems = document.getElementsByClassName("conversation-item");
+            var expandableContent = document.getElementById('expandableContent');
+            var expandableSection = document.querySelector('.expandable-section');
+            var conversationItems = document.getElementsByClassName("conversation-item");
 
-                expandableSection.classList.toggle('expanded');
+            expandableSection.classList.toggle('expanded');
 
-                if (expandableSection.classList.contains('expanded')) {
-                    expandableContent.style.height = window.innerHeight + 'px';
-                } else {
-                    expandableContent.style.height = '30px';
-                }
-
-                isCollapsed = !isCollapsed;
-
-                for (var i = 0; i < conversationItems.length; i++) {
-                    conversationItems[i].classList.toggle("collapsed", isCollapsed);
-                }
-
-                // Wait for transition to complete before showing conversation items
-                setTimeout(function () {
-                    for (var i = 0; i < conversationItems.length; i++) {
-                        conversationItems[i].style.visibility = isCollapsed ? "hidden" : "visible";
-                        conversationItems[i].style.opacity = isCollapsed ? 0 : 1;
-                    }
-                }, 300); // Same duration as transition in CSS (0.3s)
+            if (expandableSection.classList.contains('expanded')) {
+                expandableContent.style.height = window.innerHeight + 'px';
+            } else {
+                expandableContent.style.height = '30px';
             }
+
+            isCollapsed = !isCollapsed;
+
+            for (var i = 0; i < conversationItems.length; i++) {
+                conversationItems[i].classList.toggle("collapsed", isCollapsed);
+            }
+
+        }
 
 
     </script>
