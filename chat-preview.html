@@ -368,6 +368,22 @@
             <div class="message receiver">I have a question about your products.</div>
             <div class="message sender">Sure, what would you like to know?</div>
             <div class="message receiver">Can you provide more information about the warranty?</div>
+            <div class="message sender">Hello, how can I assist you today?</div>
+            <div class="message receiver">I have a question about your products.</div>
+            <div class="message sender">Sure, what would you like to know?</div>
+            <div class="message receiver">Can you provide more information about the warranty?</div>
+            <div class="message sender">Hello, how can I assist you today?</div>
+            <div class="message receiver">I have a question about your products.</div>
+            <div class="message sender">Sure, what would you like to know?</div>
+            <div class="message receiver">Can you provide more information about the warranty?</div>
+            <div class="message sender">Hello, how can I assist you today?</div>
+            <div class="message receiver">I have a question about your products.</div>
+            <div class="message sender">Sure, what would you like to know?</div>
+            <div class="message receiver">Can you provide more information about the warranty?</div>
+            <div class="message sender">Hello, how can I assist you today?</div>
+            <div class="message receiver">I have a question about your products.</div>
+            <div class="message sender">Sure, what would you like to know?</div>
+            <div class="message receiver">Can you provide more information about the warranty?</div>
         </div>
         <div class="input-area">
             <input type="text" class="input-field" id="messageInput" placeholder="Type a message..." />
@@ -383,6 +399,10 @@
         document.addEventListener("DOMContentLoaded", function () {
             var chatInput = document.getElementById("messageInput");
             var sendButton = document.getElementById("send-button");
+
+            var chatWindow = document.getElementById('chatWindow');
+
+            chatWindow.style.height = (window.innerHeight - 200) + 'px';
 
             chatInput.addEventListener("input", function () {
                 if (chatInput.value.trim() === "") {
@@ -423,7 +443,7 @@
 
             if (expandableSection.classList.contains('expanded')) {
                 expandableContent.style.height = window.innerHeight + 'px';
-                document.querySelector('.conversation-container').style.height = (window.innerHeight - 200) + 'px';
+                document.querySelector('.conversation-container').style.height = (window.innerHeight - 175) + 'px';
                 document.querySelector('.conversation-container').scrollHeight + 'px';
             } else {
                 expandableContent.style.height = '30px';
