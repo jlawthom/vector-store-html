@@ -22,7 +22,7 @@
         }
 
         .header {
-            padding: 20px;
+            padding: 10px;
             border-bottom: 1px solid #ccc;
             background-color: rgba(255, 255, 255, 0.7);
             margin: 10px;
@@ -175,6 +175,10 @@
 
         .expandable-content {
             margin-top: 20px;
+            flex-grow: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         #send-button {
@@ -193,7 +197,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 10px;
-            transition: opacity 3s ease, transform 1s ease;
+            transition: opacity 1s ease, transform 1s ease;
             opacity: 0;
             transform: translateY(-10px);
         }
@@ -216,6 +220,47 @@
             color: #999;
             cursor: pointer;
         }
+
+        .menu-section {
+            display: none;
+            justify-content: space-around;
+            align-items: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            transition: opacity 2s ease, transform 1s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            /* visibility: hidden; */
+        }
+
+        .expandable-section.expanded .menu-section {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-section i {
+            font-size: 20px;
+            color: #666;
+            cursor: pointer;
+            margin: 0 5px;
+            padding: inherit;
+        }
+
+        .conversation-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-top: 10px;
+            height: 0;
+            /* Set initial height to 0 */
+            max-height: calc(100% - 90px);
+            transition: height 0.3s ease;
+            /* Add a transition effect */
+        }
     </style>
 </head>
 
@@ -223,28 +268,88 @@
     <div class="container">
         <div class="expandable-section" id="expandableContent">
             <div class="expand-icon" onclick="toggleExpandableSection()"><i class="fas fa-bars"></i></div>
-            <div class=" expandable-content">
-
+            <div class="expandable-content">
                 <div class="search-bar">
                     <input type="text" class="search-input" placeholder="Search..." />
                     <i class="fas fa-search search-icon"></i>
                 </div>
 
-                <!-- Update the styles for .conversation-item -->
-                <div class="conversation-item active collapsed">
-                    <i class="fas fa-user"></i> <span class="item-text">John Smith</span>
-                    <i class="fas fa-globe"></i>
-                    <i class="fab fa-whatsapp"></i>
+                <div class="conversation-container">
+                    <!-- Update the styles for .conversation-item -->
+                    <div class="conversation-item active collapsed">
+                        <i class="fas fa-user"></i> <span class="item-text">John Smith</span>
+                        <i class="fas fa-globe"></i>
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="conversation-item collapsed">
+                        <i class="fas fa-user"></i> <span class="item-text">Jane Doe</span>
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="conversation-item collapsed">
+                        <i class="fas fa-user"></i> <span class="item-text">Web Visitor 834652</span>
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="conversation-item collapsed">
+                        <i class="fas fa-user"></i> <span class="item-text">John Smith</span>
+                        <i class="fas fa-globe"></i>
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="conversation-item collapsed">
+                        <i class="fas fa-user"></i> <span class="item-text">Jane Doe</span>
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="conversation-item collapsed">
+                        <i class="fas fa-user"></i> <span class="item-text">Web Visitor 834652</span>
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="conversation-item collapsed">
+                        <i class="fas fa-user"></i> <span class="item-text">John Smith</span>
+                        <i class="fas fa-globe"></i>
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="conversation-item collapsed">
+                        <i class="fas fa-user"></i> <span class="item-text">Jane Doe</span>
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="conversation-item collapsed">
+                        <i class="fas fa-user"></i> <span class="item-text">Web Visitor 834652</span>
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="conversation-item collapsed">
+                        <i class="fas fa-user"></i> <span class="item-text">John Smith</span>
+                        <i class="fas fa-globe"></i>
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="conversation-item collapsed">
+                        <i class="fas fa-user"></i> <span class="item-text">Jane Doe</span>
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="conversation-item collapsed">
+                        <i class="fas fa-user"></i> <span class="item-text">Web Visitor 834652</span>
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="conversation-item collapsed">
+                        <i class="fas fa-user"></i> <span class="item-text">John Smith</span>
+                        <i class="fas fa-globe"></i>
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="conversation-item collapsed">
+                        <i class="fas fa-user"></i> <span class="item-text">Jane Doe</span>
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="conversation-item collapsed">
+                        <i class="fas fa-user"></i> <span class="item-text">Web Visitor 834652</span>
+                        <i class="fas fa-globe"></i>
+                    </div>
                 </div>
-                <div class="conversation-item collapsed">
-                    <i class="fas fa-user"></i> <span class="item-text">Jane Doe</span>
-                    <i class="fab fa-whatsapp"></i>
-                </div>
-                <div class="conversation-item collapsed">
-                    <i class="fas fa-user"></i> <span class="item-text">Web Visitor 834652</span>
-                    <i class="fas fa-globe"></i>
+
+                <div class="menu-section" style="visibility: hidden; opacity: 0;">
+                    <i class="fas fa-home"></i>
+                    <i class="fas fa-bell"></i>
+                    <i class="fas fa-cog"></i>
                 </div>
             </div>
+
         </div>
         <div class="expandable-section blocker"> </div>
         <div class="header">
@@ -312,13 +417,17 @@
             var expandableContent = document.getElementById('expandableContent');
             var expandableSection = document.querySelector('.expandable-section');
             var conversationItems = document.getElementsByClassName("conversation-item");
+            var menuSection = document.querySelector('.menu-section');
 
             expandableSection.classList.toggle('expanded');
 
             if (expandableSection.classList.contains('expanded')) {
                 expandableContent.style.height = window.innerHeight + 'px';
+                document.querySelector('.conversation-container').style.height = (window.innerHeight - 200) + 'px';
+                document.querySelector('.conversation-container').scrollHeight + 'px';
             } else {
                 expandableContent.style.height = '30px';
+                document.querySelector('.conversation-container').style.height = '0';
             }
 
             isCollapsed = !isCollapsed;
@@ -326,6 +435,12 @@
             for (var i = 0; i < conversationItems.length; i++) {
                 conversationItems[i].classList.toggle("collapsed", isCollapsed);
             }
+
+            // Wait for transition to complete before showing conversation items
+            setTimeout(function () {
+                menuSection.style.visibility = isCollapsed ? "hidden" : "visible";
+                menuSection.style.opacity = isCollapsed ? 0 : 1;
+            }, 800); // Same duration as transition in CSS (0.3s)
 
         }
 
