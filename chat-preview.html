@@ -26,6 +26,7 @@
             border-bottom: 1px solid #ccc;
             background-color: rgba(255, 255, 255, 0.7);
             margin: 10px;
+            margin-bottom: 0;
         }
 
         .header h1 {
@@ -81,10 +82,12 @@
             flex-grow: 1;
             overflow-y: auto;
             padding: 10px;
+            padding-top: 0;
+            margin-bottom: 50px;
         }
 
         .message {
-            margin-bottom: 10px;
+            margin-top: 10px;
             padding: 10px;
             border-radius: 10px;
         }
@@ -179,6 +182,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            border-bottom: 1px solid #ccc;
         }
 
         #send-button {
@@ -400,9 +404,9 @@
             var chatInput = document.getElementById("messageInput");
             var sendButton = document.getElementById("send-button");
 
-            var chatWindow = document.getElementById('chatWindow');
+            // var chatWindow = document.getElementById('chatWindow');
 
-            chatWindow.style.height = (window.innerHeight - 200) + 'px';
+            // chatWindow.style.height = (window.innerHeight - 200) + 'px';
 
             chatInput.addEventListener("input", function () {
                 if (chatInput.value.trim() === "") {
